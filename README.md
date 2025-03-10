@@ -34,6 +34,7 @@ Software Implementation
 Throughout the quarter, we used Python classes to organize our code and used shares and queues to send flags for specific tasks
 necessary. Each task also uses FSMs (finite state machine) to ensure we know which state ROMI is "reacting" to as we test and
 debug ROMI's movements. 
+[probably add more here]
 
 Instructions for Romi Robot
 ---------------
