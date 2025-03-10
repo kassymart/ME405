@@ -24,6 +24,10 @@ Software Implementation
 **PID controllers**
 [discuss logic + calibration of motor and encoders]
 
+Wiring Diagram
+![ME 405 Wiring Diagram](https://github.com/user-attachments/assets/15b005b9-241d-4fd6-8f04-16829b4e5d3f)
+
+
 Software Implementation
 -------------
 Throughout the quarter, we used Python classes to organize our code and used shares and queues to send flags for specific tasks
