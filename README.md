@@ -25,7 +25,8 @@ Software Implementation
 [discuss logic + calibration of motor and encoders]
 
 Wiring Diagram
-![ME 405 Wiring Diagram](https://github.com/user-attachments/assets/15b005b9-241d-4fd6-8f04-16829b4e5d3f)
+![ME 405 Wiring Diagram](https://github.com/user-attachments/assets/762dbc34-67e7-4c59-b7b7-1a2298e9efaa)
+
 
 
 Software Implementation
