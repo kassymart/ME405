@@ -8,13 +8,14 @@ This ROMI uses:
 * [QTR-8RC Reflectance Sensor Array](https://www.pololu.com/product/961)
 * [BNO055 IMU](https://www.adafruit.com/product/2472)
 
-Video Demo
+Video Demo (Best Attempt)
 ----------
-
+[Romi Demo](https://youtu.be/s87TgsQ6EN8)
 
 Hardware Implementation
 ----------
-**Line Sensor**
+**Line Sensor** 
+We implemented our sensor based on the interfacing information provided in the Pololu website. 
 [discuss logic + calibration of the line sensor]
 
 **IMU**
@@ -23,6 +24,8 @@ Software Implementation
 
 **PID controllers**
 [discuss logic + calibration of motor and encoders]
+
+**Bump Sensor**
 
 Wiring Diagram
 ![ME 405 Wiring Diagram](https://github.com/user-attachments/assets/762dbc34-67e7-4c59-b7b7-1a2298e9efaa)
@@ -38,11 +41,12 @@ debug ROMI's movements.
 
 Instructions for Romi Robot
 ---------------
-1. Calibrate line sensor array on all-white surface and all-black surface.
-2. Calibrate IMU by rotating the Romi chassis around until it reads 3 operating modes: sys, gyroscope, and magnetometer.
+1. Calibrate IMU by rotating the Romi chassis around until it reads 3 operating modes: sys, gyroscope, and magnetometer.
+2. Calibrate Romi by swaying Romi back and forth. 
 3. Observe Romi's behavior as it is reading black lines on the track.
 4. Adjust PID constants (Kp, Ki, Kd) to ensure that Romi's behavior and movements are best suited for the track.
 5. Adjust the IMU and make sure Romi is configured with the initial heading.
 6. Compile and upload the code onto the microcontroller.
 7. Place the robot on the track and begin the line-following mode.
-**add image on hardware setup of Romi**
+![IMG_3082](https://github.com/user-attachments/assets/72e92c9e-c616-40de-8959-288f8fd9a484)
+
