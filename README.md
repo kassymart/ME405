@@ -28,8 +28,9 @@ Software Implementation
 [discuss logic + calibration of motor and encoders]
 
 **Bump Sensor**
+We implemented a bumper sensor using a GPIO pin that has a pull-up resistor. Also, we created a Python class for the bump sensor to update the pressed state of the sensor and adjust for debounce timing using a timer. 
 
-Wiring Diagram
+**Wiring Diagram**
 ![ME 405 Wiring Diagram](https://github.com/user-attachments/assets/762dbc34-67e7-4c59-b7b7-1a2298e9efaa)
 
 
