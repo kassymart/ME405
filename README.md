@@ -8,6 +8,8 @@ This ROMI uses:
 * [QTR-8RC Reflectance Sensor Array](https://www.pololu.com/product/961)
 * [BNO055 IMU](https://www.adafruit.com/product/2472)
 
+![IMG_3082](https://github.com/user-attachments/assets/72e92c9e-c616-40de-8959-288f8fd9a484)
+
 Video Demo (Best Attempt)
 ----------
 Track Time around 46 seconds
@@ -54,5 +56,5 @@ Instructions for Romi Robot
 5. Adjust the IMU and make sure Romi is configured with the initial heading.
 6. Compile and upload the code onto the microcontroller.
 7. Place the robot on the track to initiate line segment program. 
-![IMG_3082](https://github.com/user-attachments/assets/72e92c9e-c616-40de-8959-288f8fd9a484)
+
 
