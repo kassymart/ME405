@@ -28,16 +28,21 @@ We used a BNO055 IMU sensor to measure headings and maintain orientation of Romi
 
 We implemented a bumper sensor using a GPIO pin that has a pull-up resistor. Also, we created a Python class for the bump sensor to update the pressed state of the sensor and adjust for debounce timing using a timer. 
 
-**Wiring Diagram**
+Wiring Diagram
+-------------
 ![ME 405 Wiring Diagram](https://github.com/user-attachments/assets/762dbc34-67e7-4c59-b7b7-1a2298e9efaa)
 
 
 
 Software Implementation
 -------------
-Throughout the quarter, we used Python classes to organize our code and shares and queues to update flags for specific tasks on the scheduler. Also, we implement finite state machines (FSMs) for easy transistions to control Romi's movements. In our final project implementation, we used a segment states such a turn segment using a target heading and drive segment using a target distance and heading.
+Throughout the quarter, we used Python classes to organize our code and shares and queues to update flags for specific tasks (motor, IMU, and data) on the scheduler. Also, we implement finite state machines (FSMs) for easy transistions to control Romi's movements. In our final project implementation, we used a segment states such as a turn segment using a target heading and drive segment using a target distance and heading.
 
 
+**Motor Task**
+We begin with initalizing the motors, encoders, and bump sensor. Once the IMU is calibrated, Romi begins to check for the current segment and the encoder's position and then transitions either to DRIVE, TURN, or END states. In the DRIVE state, we integrated a heading error correction using the average of motor efforts and IMU headings to update Romi's distance, position, and segment. In TURN state, we need to update the heading error in order to rotate Romi's proportional control. In the END state, Romi comes to a stop. 
+
+**IMU Task**
 
 
 Instructions for Romi Robot
