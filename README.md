@@ -33,7 +33,7 @@ We implemented a bumper sensor using a GPIO pin that has a pull-up resistor. Als
 
 Wiring Diagram
 -------------
-![ME 405 Wiring Diagram](https://github.com/user-attachments/assets/762dbc34-67e7-4c59-b7b7-1a2298e9efaa)
+![ME 405 Wiring Diagram](![ME 405 Wiring Diagram](https://github.com/user-attachments/assets/890a9208-3beb-41d3-8dc9-746c81ee38b6)
 
 
 
