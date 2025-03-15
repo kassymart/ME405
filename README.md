@@ -24,6 +24,7 @@ We implemented our sensor based on the interfacing information provided in the P
 
 
 **IMU**
+
 We used a BNO055 IMU sensor to measure headings and maintain orientation of Romi 
 
 **Bump Sensor**
@@ -42,9 +43,10 @@ Throughout the quarter, we used Python classes to organize our code and shares a
 
 **Motor Task**
 
-We begin with initalizing the motors, encoders, and bump sensor. Once the IMU is calibrated, Romi begins to check for the current segment and the encoder's position and then transitions either to DRIVE, TURN, or END states. In the DRIVE state, we integrated a heading error correction using the average of motor efforts and IMU headings to update Romi's distance, position, and segment. In TURN state, we need to update the heading error in order to rotate Romi's proportional control. In the END state, Romi comes to a stop. 
+We begin with initalizing the base effort of motors, the PID coefficents, encoders, and bump sensor. Once the IMU is calibrated, Romi begins to check for the current segment and the encoder's position and then transitions either to DRIVE, TURN, or END states. In the DRIVE state, we integrated a heading error correction using the average of motor efforts and IMU headings to update Romi's distance, position, and segment. In TURN state, we need to update the heading error in order to rotate Romi's proportional control. In the END state, Romi comes to a stop. 
 
 **IMU Task**
+
 Initializes the IMU and calibrates the IMU's calibration status. Also, updates the heading share to the motor task. 
 
 **Data Task**
