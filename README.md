@@ -25,7 +25,7 @@ We implemented our sensor based on the interfacing information provided in the P
 
 **IMU**
 
-We used a BNO055 IMU sensor to measure headings and maintain orientation of Romi 
+We used a BNO055 IMU sensor to update calibrate coefficents of the IMU and measure headings, euler angles, angular velcity, and the yaw rate.
 
 **Bump Sensor**
 
