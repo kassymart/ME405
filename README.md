@@ -37,10 +37,8 @@ We implemented a bumper sensor using a GPIO pin that has a pull-up resistor. Als
 
 Software Implementation
 -------------
-Throughout the quarter, we used Python classes to organize our code and used shares and queues to send flags for specific tasks
-necessary. Each task also uses FSMs (finite state machine) to ensure we know which state ROMI is "reacting" to as we test and
-debug ROMI's movements. 
-[probably add more here]
+Throughout the quarter, we used Python classes to organize our code and updates flags by using shares and queues  for specific tasks on the scheduler. Also, we implement finite state machines (FSMs) for easy transistions to control Romi's movements. In our final project implementation, we used a segment states such a turn segment using a target heading and drive segment using a target distance and heading. 
+
 
 Instructions for Romi Robot
 ---------------
@@ -50,6 +48,6 @@ Instructions for Romi Robot
 4. Adjust PID constants (Kp, Ki, Kd) to ensure that Romi's behavior and movements are best suited for the track.
 5. Adjust the IMU and make sure Romi is configured with the initial heading.
 6. Compile and upload the code onto the microcontroller.
-7. Place the robot on the track and begin the line-following mode.
+7. Place the robot on the track. 
 ![IMG_3082](https://github.com/user-attachments/assets/72e92c9e-c616-40de-8959-288f8fd9a484)
 
