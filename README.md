@@ -10,13 +10,15 @@ This ROMI uses:
 
 Video Demo (Best Attempt)
 ----------
+Track Time around 46 seconds
+
 [Romi Demo](https://youtu.be/s87TgsQ6EN8)
 
 Hardware Implementation
 ----------
 **Line Sensor** 
-We implemented our sensor based on the interfacing information provided in the Pololu website. 
-[discuss logic + calibration of the line sensor]
+
+We implemented our sensor based on the interfacing information provided in the Pololu website. In lab 4, the line sensor was able to read black and white datums based on the discharging times of the RC sensors. Then, normalize the readings with the values of the white and black datums. Lastly, calculate the centroid of the sensor readings. The line sensor did not work properly for our final term project due to the inconsistent readings during calibration. 
 
 **IMU**
 [discuss logic + calibration of the IMU]
