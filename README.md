@@ -20,14 +20,12 @@ Hardware Implementation
 
 We implemented our sensor based on the interfacing information provided in the Pololu website. In lab 4, the line sensor was able to read black and white datums based on the discharging times of the RC sensors. Then, normalize the readings with the values of the white and black datums. Lastly, calculate the centroid of the sensor readings. The line sensor did not work properly for our final term project due to the inconsistent readings during calibration. 
 
-**IMU**
-[discuss logic + calibration of the IMU]
-Software Implementation
 
-**PID controllers**
-[discuss logic + calibration of motor and encoders]
+**IMU**
+We used a BNO055 IMU sensor to measure headings and maintain orientation of Romi 
 
 **Bump Sensor**
+
 We implemented a bumper sensor using a GPIO pin that has a pull-up resistor. Also, we created a Python class for the bump sensor to update the pressed state of the sensor and adjust for debounce timing using a timer. 
 
 **Wiring Diagram**
@@ -37,7 +35,9 @@ We implemented a bumper sensor using a GPIO pin that has a pull-up resistor. Als
 
 Software Implementation
 -------------
-Throughout the quarter, we used Python classes to organize our code and updates flags by using shares and queues  for specific tasks on the scheduler. Also, we implement finite state machines (FSMs) for easy transistions to control Romi's movements. In our final project implementation, we used a segment states such a turn segment using a target heading and drive segment using a target distance and heading. 
+Throughout the quarter, we used Python classes to organize our code and shares and queues to update flags for specific tasks on the scheduler. Also, we implement finite state machines (FSMs) for easy transistions to control Romi's movements. In our final project implementation, we used a segment states such a turn segment using a target heading and drive segment using a target distance and heading.
+
+
 
 
 Instructions for Romi Robot
@@ -48,6 +48,6 @@ Instructions for Romi Robot
 4. Adjust PID constants (Kp, Ki, Kd) to ensure that Romi's behavior and movements are best suited for the track.
 5. Adjust the IMU and make sure Romi is configured with the initial heading.
 6. Compile and upload the code onto the microcontroller.
-7. Place the robot on the track. 
+7. Place the robot on the track to initiate line segment program. 
 ![IMG_3082](https://github.com/user-attachments/assets/72e92c9e-c616-40de-8959-288f8fd9a484)
 
