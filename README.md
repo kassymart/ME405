@@ -40,11 +40,16 @@ Software Implementation
 -------------
 Throughout the quarter, we used Python classes to organize our code and shares and queues to update flags for specific tasks (motor, IMU, and data) on the scheduler. Also, we implement finite state machines (FSMs) for easy transistions to control Romi's movements. In our final project implementation, we used a segment states such as a turn segment using a target heading and drive segment using a target distance and heading.
 
-
 **Motor Task**
+
 We begin with initalizing the motors, encoders, and bump sensor. Once the IMU is calibrated, Romi begins to check for the current segment and the encoder's position and then transitions either to DRIVE, TURN, or END states. In the DRIVE state, we integrated a heading error correction using the average of motor efforts and IMU headings to update Romi's distance, position, and segment. In TURN state, we need to update the heading error in order to rotate Romi's proportional control. In the END state, Romi comes to a stop. 
 
 **IMU Task**
+Initializes the IMU and calibrates the IMU's calibration status. Also, updates the heading share to the motor task. 
+
+**Data Task**
+
+The data task will print out current heading, distance, and velociy of the motors. 
 
 
 Instructions for Romi Robot
