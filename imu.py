@@ -56,15 +56,10 @@ class BNO055:
     def heading(self):
         return self._read_reg(BNO055.reg.EUL_HEADING)[0] / 16
 
-    def roll(self):
-        return self._read_reg(BNO055.reg.EUL_DATA_ALL)[1] / 16
-
-    def pitch(self):
-        return self._read_reg(BNO055.reg.EUL_DATA_ALL)[2] / 16
-
+    def yaw_rate(self):
+        return self._read_reg(BNO055.reg.GYRO_DATA)[2] / 16
+    
     def read_angular_velocity(self):
         x, y, z = self._read_reg(BNO055.reg.GYRO_DATA)
         return (x / 16, y / 16, z / 16)
 
-    def yaw_rate(self):
-        return self._read_reg(BNO055.reg.GYRO_DATA)[2] / 16
