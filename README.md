@@ -52,6 +52,9 @@ Throughout the quarter, we used Python classes to organize our code and shares a
 
 We begin with initalizing the base effort of motors, the PID coefficents, encoders, and bump sensor. Once the IMU is calibrated, Romi begins to check for the current segment and the encoder's position and then transitions either to DRIVE, TURN, BUMP, BACKUP or END states. In the DRIVE state, we used a cascaded controller using proportional-integral control on the error between the target heading and the current heading reading, and proportional control on the error between left and right wheel velocities measured by the encoder. This allowed Romi to find the correct heading and drive as straight as possible. In TURN state, the heading error is again used to control the efforts in the left and right motors. Using proportional integral control and saturating the motor efforts, we can control the yaw rate and ensure that Romi is pointed in the right direction before beginning the next Drive segment. The BUMP and BACKUP states are used to detect and respond to the portion of the track where Romi interacts with the wall. In the END state, Romi comes to a stop. 
 
+![image](https://github.com/user-attachments/assets/daca1d0c-b8b3-430f-8751-a08beb6d6eb8)
+
+
 **IMU Task**
 
 Initializes the IMU and calibrates the IMU's magnetometer, accelerometer and gyroscope. In the Initialization state, teh IMU takes an average of ten headings to calibrate the starting heading. This starting heading is normalized and used as a new reference point of 0 degrees for the remainder of the program. By referencing from 0, programming turns is made much easier. After initializing, this task updates the current heading share for use in the motor task. 
