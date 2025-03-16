@@ -25,16 +25,16 @@ Hardware Implementation
 ----------
 **Line Sensor** 
 
-We implemented our sensor based on the interfacing information provided in the Pololu website. In lab 4, the line sensor was able to read black and white datums based on the discharging times of the RC sensors. Then, we would normalize the readings with the values of the white and black datums. Lastly, we calculate the centroid of the sensor readings to then be able to adjust the motor efforts based on the error in centroid location. Unfortunately, the line sensor was not consistent enough to work properly for our final term project due to the a multitude of resons, namely the variations in room lighting and the reflectivity of the game track surface. 
+We implemented our sensor based on the interfacing information provided in the Pololu website. In lab 4, the line sensor was able to read black and white datums based on the discharging times of the RC sensors. Then, we would normalize the readings with the values of the white and black datums. Lastly, we calculate the centroid of the sensor readings to then be able to adjust the motor efforts based on the error in centroid location. Unfortunately, the line sensor was not consistent enough to work properly for our final term project due to a multitude of resons, namely the variations in room lighting and the reflectivity of the game track surface. 
 
 
 **IMU**
 
-We used a BNO055 IMU sensor to detect changes in orientation and measure headings, euler angles, angular velcity, and the yaw rate.
+We used a BNO055 IMU (Inertial Measurement Unit) sensor to detect changes in orientation and measure headings, Euler angles, angular velocity, and the yaw rate. The BNO055 IMU integrates a 3-axis accelerometer, a 3-axis gyroscope, and a 3-axis magnetometer, providing comprehensive orientation data.
 
 **Bump Sensor**
 
-We implemented a bumper sensor using a GPIO pin that has a pull-up resistor. Also, we created a Python class for the bump sensor to update the pressed state of the sensor and adjust for debounce timing using a timer. 
+We implemented a bump sensor using a GPIO pin with a pull-up resistor to detect physical obstacles in the robot's path. The bump sensor was designed to provide feedback to the control system to prevent collisions and adjust the robot's movements accordingly. 
 
 Wiring Diagram
 -------------
