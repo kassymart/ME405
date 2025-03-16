@@ -55,6 +55,7 @@ Initializes the IMU and calibrates the IMU's magnetometer, accelerometer and gyr
 **Data Task**
 
 The data task will print out current heading, distance, and velociy of the motors. 
+
 ![image](https://github.com/user-attachments/assets/c161276c-2ea2-44ad-8dfa-c0368376cdfe)
 
 
