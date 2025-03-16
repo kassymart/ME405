@@ -65,3 +65,5 @@ Instructions for Romi Robot
 7. Place the robot on the track to initiate line segment program. 
 
 
+Conclusion
+---------------
