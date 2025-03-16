@@ -1,0 +1,205 @@
+import task_share
+import cotask
+from motor import Motor
+from encoder import Encoder
+from array_sensor import Multi_Sensor
+from pyb import Pin, Timer
+
+def motor_task(shares):
+    ''' Function to be run by the motor task. The motor task will set the duty '''
+    state = 'INIT'
+    left_motor = None
+    right_motor = None
+    left_encoder = None
+    right_encoder = None
+    forward_velocity = 2  # Desired velocity in rad/s
+    Kp_velocity = 2  # Proportional gain for velocity control
+    Kp_line = 1000  # Proportional gain for line following
+    base_effort = 15  # Base effort to ensure forward velocity
+
+    while True:
+        if state == 'INIT':
+            # Initialize motors and encoders
+            left_motor = Motor(Pin.board.PB4, Pin.cpu.H0, Pin.cpu.H1, 3, 1)
+            right_motor = Motor(Pin.board.PB5, Pin.cpu.C10, Pin.cpu.C12, 3, 2)
+            left_encoder = Encoder(Timer(1, period=0xFFFF, prescaler=0), Pin(Pin.cpu.A8), Pin(Pin.cpu.A9))
+            right_encoder = Encoder(Timer(8, period=0xFFFF, prescaler=0), Pin(Pin.cpu.C6), Pin(Pin.cpu.C7))
+            left_motor.enable()
+            right_motor.enable()
+            left_encoder.reset()
+            right_encoder.reset()
+            state = 'WAIT_FOR_CALIBRATION'
+            yield  
+
+        elif state == 'WAIT_FOR_CALIBRATION':
+            # Wait for calibration to be done
+            if calibration_flag.get() == 1:
+                # Initialize motor efforts to base effort
+                left_effort.put(base_effort)
+                right_effort.put(base_effort)
+                state = 'VELOCITY_CONTROL'
+            yield
+
+        elif state == 'VELOCITY_CONTROL':
+            # Update encoder values and store velocities in shares
+            left_encoder.update()
+            right_encoder.update()
+            left_velocity.put(int(left_encoder.get_velocity()))
+            right_velocity.put(int(right_encoder.get_velocity()))
+            update_flag.put(1)  # Set the update flag
+
+            # Calculate errors for velocity control
+            left_error = forward_velocity - left_velocity.get()
+            right_error = forward_velocity - right_velocity.get()
+
+            # Adjust efforts based on proportional control for velocity
+            left_effort.put(left_effort.get() + Kp_velocity * left_error)
+            right_effort.put(right_effort.get() + Kp_velocity * right_error)
+
+            # Set motor efforts
+            left_motor.set_effort(left_effort.get())
+            right_motor.set_effort(right_effort.get())
+
+            # Check if line detected flag is set
+            if line_detected_flag.get() == 1:
+                state = 'LINE_FOLLOWING'
+            yield 
+
+        elif state == 'LINE_FOLLOWING':
+            # Update encoder values and store velocities in shares
+            left_encoder.update()
+            right_encoder.update()
+            left_velocity.put(int(left_encoder.get_velocity()))
+            right_velocity.put(int(right_encoder.get_velocity()))
+            update_flag.put(1)  # Set the update flag
+
+            # Adjust motor efforts based on sensor values
+            centroid = centroid_share.get()
+            print(f"Centroid: {centroid}")
+            error = 3.5 - centroid  # Calculate error from center
+            print(f"Error: {error}")
+
+            if error == 0:
+                state = 'VELOCITY_CONTROL'
+                yield
+
+            # Adjust efforts based on proportional control for line following
+            new_left_effort = base_effort - Kp_line * error
+            new_right_effort = base_effort + Kp_line * error
+
+            # Saturate efforts to be within 0 to 20
+            new_left_effort = max(min(new_left_effort, 20), 0)
+            new_right_effort = max(min(new_right_effort, 20), 0)
+
+            left_effort.put(int(new_left_effort))  # Inner motor effort (left motor)
+            right_effort.put(int(new_right_effort))  # Outer motor effort (right motor)
+
+            # Set motor efforts
+            left_motor.set_effort(left_effort.get())
+            right_motor.set_effort(right_effort.get())
+
+            # Check if line is no longer detected
+            if line_detected_flag.get() == 0:
+                state = 'VELOCITY_CONTROL'
+            yield
+
+def sensor_task(shares):
+    ''' Function to be run by the sensor task. The sensor task will read the sensor values and store them in shares '''
+    state = 'INIT'
+    sensor_array = None
+    while True:
+        if state == 'INIT':
+            # Initialize the sensor array with 8 GPIO pins on the Nucleo L476RG
+            sensor_array = Multi_Sensor([
+                Pin.cpu.B8, Pin.cpu.B9, Pin.cpu.A6, Pin.cpu.A7, 
+                Pin.cpu.B6, Pin.cpu.B12, Pin.cpu.B11, Pin.cpu.B10])
+            state = 'CALIBRATE_WHITE'
+            yield
+
+        elif state == 'CALIBRATE_WHITE':
+            # Calibrate for white surface
+            if input("Place robot on white surface and press enter to continue: ") == '':
+                sensor_array.calibrate(white=True)
+                state = 'CALIBRATE_BLACK'
+            yield
+
+        elif state == 'CALIBRATE_BLACK':
+            # Calibrate for black surface
+            if input("Place robot on black surface and press enter to continue: ") == '':
+                sensor_array.calibrate(white=False)
+                calibration_flag.put(1)  # Set the calibration flag
+                state = 'READ_SENSORS'
+            yield
+
+        elif state == 'READ_SENSORS':
+            # Ensure calibration has been done before reading sensors
+            if calibration_flag.get() == 1:
+                # Clear the sensor values queue before storing new readings
+                while not sensor_values.empty():
+                    sensor_values.get()
+                # Read sensor values and store them in shares
+                sensor_readings = sensor_array.read_sensors()
+                for value in sensor_readings:
+                    sensor_values.put(value)
+                
+                # Calculate centroid and set line detection flag
+                centroid = Multi_Sensor.calculate_centroid(sensor_readings)
+                centroid_share.put(centroid)
+                
+                # Check if any sensor reading is close to the black calibration values
+                if any(reading == black_datum for reading, black_datum in zip(sensor_readings, sensor_array.black_datum)):
+                    line_detected_flag.put(1)  # Line detected
+                else:
+                    line_detected_flag.put(0)  # Line not detected
+            yield
+
+def data_task(shares):
+    ''' Function to be run by the data task. The data task will read the value from the share and print it to the terminal '''
+    state = 'INIT'
+    while True:
+        if state == 'INIT':
+            state = 'WAIT_FOR_UPDATE'
+            yield
+
+        elif state == 'WAIT_FOR_UPDATE':
+            if update_flag.get() == 1:
+                # Print motor velocities and sensor values to the terminal
+                sensor_values_list = []
+                while not sensor_values.empty():
+                    sensor_values_list.append(sensor_values.get())
+                print(f"Left Motor Velocity: {left_velocity.get()} Right Motor Velocity: {right_velocity.get()}") 
+                print(f"Sensor Values: {sensor_values_list}")
+                update_flag.put(0)  # Clear the update flag
+                state = 'WAIT_FOR_UPDATE'
+            yield
+
+if __name__ == "__main__":
+    # Define shared variables
+    left_effort = task_share.Share('i', thread_protect=False, name="Left Motor Effort")
+    right_effort = task_share.Share('i', thread_protect=False, name="Right Motor Effort")
+    left_velocity = task_share.Share('i', thread_protect=False, name="Left Motor Velocity")
+    right_velocity = task_share.Share('i', thread_protect=False, name="Right Motor Velocity")
+    update_flag = task_share.Share('i', thread_protect=False, name="Update Flag")
+    sensor_values = task_share.Queue('i', 8, thread_protect=False, name="Sensor Values")  # Use Queue instead of Share
+    calibration_flag = task_share.Share('i', thread_protect=False, name="Calibration Flag")
+    line_detected_flag = task_share.Share('i', thread_protect=False, name="Line Detected Flag")
+    centroid_share = task_share.Share('f', thread_protect=False, name="Centroid")  # Share for centroid
+
+    # Initialize flags
+    update_flag.put(0)
+    calibration_flag.put(0)
+    line_detected_flag.put(0)
+
+    # Create tasks
+    motor_task = cotask.Task(motor_task, name="Motor Task", priority=1, period=50, profile=True, trace=False, shares=(left_effort, right_effort, left_velocity, right_velocity, update_flag, sensor_values, line_detected_flag, centroid_share))
+    sensor_task = cotask.Task(sensor_task, name="Sensor Task", priority=1, period=50, profile=True, trace=False, shares=(left_effort, right_effort, left_velocity, right_velocity, update_flag, sensor_values, calibration_flag, line_detected_flag, centroid_share))
+    data_task = cotask.Task(data_task, name="Data Task", priority=1, period=100, profile=True, trace=False, shares=(left_effort, right_effort, left_velocity, right_velocity, update_flag, sensor_values))
+
+    # Add tasks to the task list
+    cotask.task_list.append(motor_task)
+    cotask.task_list.append(sensor_task)
+    cotask.task_list.append(data_task)
+
+    # Run the scheduler
+    while True:
+        cotask.task_list.pri_sched()  # Run the priority scheduler
