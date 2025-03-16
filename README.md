@@ -21,12 +21,12 @@ Hardware Implementation
 ----------
 **Line Sensor** 
 
-We implemented our sensor based on the interfacing information provided in the Pololu website. In lab 4, the line sensor was able to read black and white datums based on the discharging times of the RC sensors. Then, normalize the readings with the values of the white and black datums. Lastly, calculate the centroid of the sensor readings. The line sensor did not work properly for our final term project due to the inconsistent readings during calibration. 
+We implemented our sensor based on the interfacing information provided in the Pololu website. In lab 4, the line sensor was able to read black and white datums based on the discharging times of the RC sensors. Then, we would normalize the readings with the values of the white and black datums. Lastly, we calculate the centroid of the sensor readings to then be able to adjust the motor efforts based on the error in centroid location. Unfortunately, the line sensor was not consistent enough to work properly for our final term project due to the a multitude of resons, namely the variations in room lighting and the reflectivity of the game track surface. 
 
 
 **IMU**
 
-We used a BNO055 IMU sensor to update calibrate coefficents of the IMU and measure headings, euler angles, angular velcity, and the yaw rate.
+We used a BNO055 IMU sensor to detect changes in orientation and measure headings, euler angles, angular velcity, and the yaw rate.
 
 **Bump Sensor**
 
