@@ -17,6 +17,10 @@ Track Time around 46 seconds
 
 [Romi Demo](https://youtu.be/s87TgsQ6EN8)
 
+Line Following Sensor (Working for Lab 0x04)
+-----------
+[Line Sensor Demo](https://youtube.com/shorts/gxOA3wK9QaQ)
+
 Hardware Implementation
 ----------
 **Line Sensor** 
@@ -35,7 +39,6 @@ We implemented a bumper sensor using a GPIO pin that has a pull-up resistor. Als
 Wiring Diagram
 -------------
 ![ME 405 Wiring Diagram](https://github.com/user-attachments/assets/890a9208-3beb-41d3-8dc9-746c81ee38b6)
-
 
 
 Software Implementation
