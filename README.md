@@ -86,4 +86,4 @@ Instructions for Romi Robot
 
 Conclusion
 ---------------
-Even though Romi wasn’t able to complete the track, we were able to learn on how to implement our own robot using proportional-integral-derivative controls, FSMs, IMU headings, and task scheduler. 
+Even though Romi wasn’t able to complete the track, we were able to learn how to implement micropython on a robot using proportional-integral-derivative controls, finite state machines (FSMs), and task schedulers. Throughout this project, we faced and overcame various challenges, including sensor integration, real-time data processing, and motor control. This experience has provided us with valuable insights into robotics and has allowed us to gain practical skills in hardware interfacing, software development, and system debugging. The knowledge and skills we have acquired will undoubtedly be beneficial in our future engineering projects and careers.
