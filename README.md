@@ -57,7 +57,7 @@ We begin with initalizing the base effort of motors, the PID coefficents, encode
 
 **IMU Task**
 
-Initializes the IMU and calibrates the IMU's magnetometer, accelerometer and gyroscope. In the Initialization state, teh IMU takes an average of ten headings to calibrate the starting heading. This starting heading is normalized and used as a new reference point of 0 degrees for the remainder of the program. By referencing from 0, programming turns is made much easier. After initializing, this task updates the current heading share for use in the motor task. 
+Initializes the IMU and calibrates the IMU's magnetometer, accelerometer and gyroscope. In the Initialization state, the IMU takes an average of ten headings to calibrate the starting heading. This starting heading is normalized and used as a new reference point of 0 degrees for the remainder of the program. By referencing from 0, programming turns is made much easier. After initializing, this task updates the current heading share for use in the motor task. 
 
 ![image](https://github.com/user-attachments/assets/19b0cd50-dcdd-4406-beb2-0f0f5d18e52f)
 
