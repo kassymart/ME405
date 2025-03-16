@@ -7,6 +7,7 @@ This ROMI uses:
 * [Romi Robot Kit](https://www.pololu.com/product/3501)
 * [QTR-8RC Reflectance Sensor Array](https://www.pololu.com/product/961)
 * [BNO055 IMU](https://www.adafruit.com/product/2472)
+* [Bump Sensor](https://www.pololu.com/product/1402)
 
 ![IMG_3082](https://github.com/user-attachments/assets/72e92c9e-c616-40de-8959-288f8fd9a484)
 
