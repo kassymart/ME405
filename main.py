@@ -66,7 +66,6 @@ def motor_task(shares):
     left_encoder = None
     right_encoder = None
 
-    # (Assume bump_sensor is initialized earlier as a LatchingButton or debounced input)
     while True:
         if state == 'INIT':
             left_motor = Motor(Pin.board.PB4, Pin.cpu.H0, Pin.cpu.H1, 3, 1)
@@ -123,7 +122,7 @@ def motor_task(shares):
             else:
                 desired_heading = segments[segment_index]["heading"]
 
-            # Calculate heading error (preserving sign)
+            # Calculate heading error
             heading_error = desired_heading - current_heading.get()
             # Accumulate the error
             drive_heading_integral += heading_error
@@ -150,7 +149,7 @@ def motor_task(shares):
             left_velocity.put(left_encoder.get_velocity())
             right_velocity.put(right_encoder.get_velocity())
             vel_error = left_velocity.get() - right_velocity.get()
-            # Velocity correction (unchanged)
+            # Velocity correction 
             correction = int(Kp_vel * vel_error)
             correction = max(min(correction, 5), -5)
             new_left_effort = base_effort - correction
@@ -158,9 +157,6 @@ def motor_task(shares):
             left_motor.set_effort(int(new_left_effort))
             right_motor.set_effort(int(new_right_effort))
 
-            #print(f"current heading: {current_heading.get()}")
-            print(f"desired heading: {desired_heading}")
-            
             left_encoder.update()
             right_encoder.update()
             # Once the target distance is reached, stop and proceed.
@@ -174,7 +170,6 @@ def motor_task(shares):
             yield
 
         elif state == 'BUMP':
-            # Bump state with a similar heading control using integral action.
             left_motor.set_effort(base_effort)
             right_motor.set_effort(base_effort)
 
@@ -215,14 +210,11 @@ def motor_task(shares):
             new_right_effort = base_effort + correction
             left_motor.set_effort(int(new_left_effort))
             right_motor.set_effort(int(new_right_effort))
-
-            #print(f"current heading: {current_heading.get()}")
-            print(f"desired heading: {desired_heading}")
             
             left_encoder.update()
             right_encoder.update()
             
-            # Check the bump sensor (with debounce) to transition to BACKUP
+            # Check the bump sensor to transition to BACKUP
             if bump_sensor.value() == 0:
                 delay(50)  # 50ms delay for debounce
                 if bump_sensor.value() == 0:
@@ -254,7 +246,7 @@ def motor_task(shares):
             yield
 
         elif state == 'TURN':
-            # Turn state (unchanged): using proportional and integral control for turn.
+            # Turn state: using proportional and integral control for turn.
             desired_heading = segments[segment_index]["heading"]
             heading_error = desired_heading - current_heading.get()
 
