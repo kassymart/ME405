@@ -67,7 +67,7 @@ Initializes the IMU and calibrates the IMU's magnetometer, accelerometer and gyr
 
 **Data Task**
 
-The data task will print out current heading, distance, and velociy of the motors. 
+The data task is responsible for collecting and displaying critical information about the robot's performance in real-time. This includes the current heading, distance traveled, and the velocity of the motors. 
 
 ![image](https://github.com/user-attachments/assets/c161276c-2ea2-44ad-8dfa-c0368376cdfe)
 
@@ -75,12 +75,12 @@ The data task will print out current heading, distance, and velociy of the motor
 
 Instructions for Romi Robot
 ---------------
-1. **Compile and Upload Code**: Compile the project code and upload it to the Romi's microcontroller. Ensure there are no errors during compilation and uploading.
+1. **Compile and Upload Code**: Compile the project code and upload it to the Romi's microcontroller using PuTTY. Ensure there are no errors during compilation and uploading.
 2. **Initiate the Program**: Place the robot on the track and initiate the program.
 3. **Calibrate IMU**: Rotate the Romi chassis around until the IMU sensor reads a value of 3 for the magnetometer, accelerometer, and gyroscope. This ensures accurate orientation data.
-4. **Calibrate Starting Heading**: Sway the Romi back and forth to calibrate its starting heading. This step helps the IMU set a reference point for direction.
+4. **Calibrate Starting Heading**: Point the Romi in the direction of the first desired vector to calibrate its starting heading. This step helps the IMU set a reference point for direction.
 5. **Observe Romi's Behavior**: Place Romi on the track and observe its behavior as it runs through the track. 
-6. **Adjust PID Constants**: Fine-tune the PID (Proportional-Integral-Derivative) constants to optimize Romi's behavior and movements for the track. This may involve several iterations of testing and adjustment.
+6. **Adjust PID Constants**: Fine-tune the PID gains and needed encoder counts to optimize Romi's behavior and movements for the track. This may involve several iterations of testing and adjustment.
 
 
 Conclusion
