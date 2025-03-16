@@ -86,4 +86,4 @@ Instructions for Romi Robot
 
 Conclusion
 ---------------
-Even though Romi wasn’t able to complete the track, we were able to learn on how to implement our own robot using proportional-integral-derivative controls, FSMs, headings, and task scheduler. 
+Even though Romi wasn’t able to complete the track, we were able to learn on how to implement our own robot using proportional-integral-derivative controls, FSMs, IMU headings, and task scheduler. 
