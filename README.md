@@ -28,9 +28,9 @@ Hardware Implementation
 We implemented our sensor based on the interfacing information provided in the Pololu website. In lab 4, the line sensor was able to read black and white datums based on the discharging times of the RC sensors. Then, we would normalize the readings with the values of the white and black datums. Lastly, we calculate the centroid of the sensor readings to then be able to adjust the motor efforts based on the error in centroid location. Unfortunately, the line sensor was not consistent enough to work properly for our final term project due to a multitude of resons, namely the variations in room lighting and the reflectivity of the game track surface. 
 
 
-**IMU**
+**Inertial Measurement Unit**
 
-We used a BNO055 IMU (Inertial Measurement Unit) sensor to detect changes in orientation and measure headings, Euler angles, angular velocity, and the yaw rate. The BNO055 IMU integrates a 3-axis accelerometer, a 3-axis gyroscope, and a 3-axis magnetometer, providing comprehensive orientation data.
+We used a BNO055 Inertial Measurement Unit (IMU) sensor to detect changes in orientation and measure headings, Euler angles, angular velocity, and the yaw rate. The BNO055 IMU integrates a 3-axis accelerometer, a 3-axis gyroscope, and a 3-axis magnetometer, providing comprehensive orientation data.
 
 **Bump Sensor**
 
@@ -75,15 +75,14 @@ The data task will print out current heading, distance, and velociy of the motor
 
 Instructions for Romi Robot
 ---------------
-1. Calibrate IMU by rotating the Romi chassis around until it reads a value of 3 for magnetometer, accelerometer and gyroscope.
-2. Calibrate Romi's starting heading by swaying Romi back and forth. 
-3. Observe Romi's behavior as it is reading black lines on the track.
-4. Adjust PID constants to ensure that Romi's behavior and movements are best suited for the track.
-5. Adjust the IMU and make sure Romi is configured with the initial heading.
-6. Compile and upload the code onto the microcontroller.
-7. Place the robot on the track to initiate line segment program. 
+1. **Compile and Upload Code**: Compile the project code and upload it to the Romi's microcontroller. Ensure there are no errors during compilation and uploading.
+2. **Initiate the Program**: Place the robot on the track and initiate the program.
+3. **Calibrate IMU**: Rotate the Romi chassis around until the IMU sensor reads a value of 3 for the magnetometer, accelerometer, and gyroscope. This ensures accurate orientation data.
+4. **Calibrate Starting Heading**: Sway the Romi back and forth to calibrate its starting heading. This step helps the IMU set a reference point for direction.
+5. **Observe Romi's Behavior**: Place Romi on the track and observe its behavior as it runs through the track. 
+6. **Adjust PID Constants**: Fine-tune the PID (Proportional-Integral-Derivative) constants to optimize Romi's behavior and movements for the track. This may involve several iterations of testing and adjustment.
 
 
 Conclusion
 ---------------
-Even though Romi wasn’t able to complete the track, we were able to learn how to implement micropython on a robot using proportional-integral-derivative controls, finite state machines (FSMs), and task schedulers. Throughout this project, we faced and overcame various challenges, including sensor integration, real-time data processing, and motor control. This experience has provided us with valuable insights into robotics and has allowed us to gain practical skills in hardware interfacing, software development, and system debugging. The knowledge and skills we have acquired will undoubtedly be beneficial in our future engineering projects and careers.
+Even though Romi wasn’t able to complete the track, we were able to learn how to implement micropython on a robot using proportional-integral-derivative control, finite state machines (FSMs), and task schedulers. Throughout this project, we faced and overcame various challenges, including sensor integration, real-time data processing, and motor control. This experience has provided us with valuable insights into robotics programming and has allowed us to gain practical skills in hardware interfacing, software development, and system debugging. The knowledge and skills we have acquired here will be greatly applicable in our future engineering projects and careers.
