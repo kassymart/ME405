@@ -33,7 +33,7 @@ We implemented a bumper sensor using a GPIO pin that has a pull-up resistor. Als
 
 Wiring Diagram
 -------------
-![ME 405 Wiring Diagram](![ME 405 Wiring Diagram](https://github.com/user-attachments/assets/890a9208-3beb-41d3-8dc9-746c81ee38b6)
+![ME 405 Wiring Diagram](https://github.com/user-attachments/assets/890a9208-3beb-41d3-8dc9-746c81ee38b6)
 
 
 
@@ -59,7 +59,7 @@ Instructions for Romi Robot
 1. Calibrate IMU by rotating the Romi chassis around until it reads 3 operating modes: sys, gyroscope, and magnetometer.
 2. Calibrate Romi by swaying Romi back and forth. 
 3. Observe Romi's behavior as it is reading black lines on the track.
-4. Adjust PID constants (Kp, Ki, Kd) to ensure that Romi's behavior and movements are best suited for the track.
+4. Adjust PID constants to ensure that Romi's behavior and movements are best suited for the track.
 5. Adjust the IMU and make sure Romi is configured with the initial heading.
 6. Compile and upload the code onto the microcontroller.
 7. Place the robot on the track to initiate line segment program. 
