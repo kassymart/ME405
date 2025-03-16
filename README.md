@@ -1,7 +1,7 @@
 ME 405 Term Project
 -----------
-This ROMI robot project was implemented and developed by Dane Carroll and Kassandra Martinez-Mejia. The goal for the project is
-the ROMI robot must complete a track with distinct turns and obstacles as it makes its way back to the starting point. 
+Introduction
+This ROMI robot project was implemented and developed by Dane Carroll and Kassandra Martinez-Mejia as part of the ME 405 course's final project. The primary objective of this project was to design and develop a fully functional robot, named Romi, capable of navigating a track with distinct turns and obstacles, ultimately making its way back to the starting point. The project involved various stages, including hardware assembly, sensor integration, software development, and real-time testing. We utilized several key components such as the Romi Robot Kit including motors and encoders, QTR-8RC Reflectance Sensor Array, BNO055 IMU, and a bump sensor. Each component played a crucial role in enabling Romi to detect and respond to its environment. This development process provided hands-on experience in robotics, allowing us to apply theoretical knowledge in practical scenarios. Through iterative testing and debugging, we refined Romi's capabilities to achieve the best possible performance on the track. This document outlines the hardware and software implementations, provides detailed instructions for setting up and running the Romi robot, and reflects on the lessons learned throughout the project.
 
 This ROMI uses:
 * [Romi Robot Kit](https://www.pololu.com/product/3501)
