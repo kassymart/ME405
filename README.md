@@ -11,13 +11,13 @@ This ROMI uses:
 
 ![IMG_3082](https://github.com/user-attachments/assets/72e92c9e-c616-40de-8959-288f8fd9a484)
 
-Video Demo (Best Attempt)
+Video Demo (Best Official Attempt)
 ----------
 Track Time around 46 seconds
 
 [Romi Demo](https://youtu.be/s87TgsQ6EN8)
 
-Line Following Sensor (Working for Lab 0x04)
+Line Following Demo (For Lab 0x04)
 -----------
 [Line Sensor Demo](https://youtube.com/shorts/gxOA3wK9QaQ)
 
