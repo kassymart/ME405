@@ -17,7 +17,7 @@ Track Time around 46 seconds
 
 [Romi Demo](https://youtu.be/s87TgsQ6EN8)
 
-Line Following Demo (For Lab 0x04)
+Line Following Demo (From Lab 0x04)
 -----------
 [Line Sensor Demo](https://youtube.com/shorts/gxOA3wK9QaQ)
 
